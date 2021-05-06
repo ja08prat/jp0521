@@ -1,6 +1,7 @@
 package org.ja08prat.rental.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class RentalAgreement {
     private Tool rentedTool;
@@ -14,6 +15,8 @@ public class RentalAgreement {
     private Double preDiscountCharge;
     private Double discountAmount;
     private Double finalCharge;
+
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy");
 
     public RentalAgreement(Tool rentedTool, Integer rentalDays, Integer discountPercent, LocalDate checkoutDate) {
         this.rentedTool = rentedTool;
@@ -94,10 +97,21 @@ public class RentalAgreement {
         this.finalCharge = finalCharge;
     }
 
-    // fill this out later
     @Override
     public String toString() {
-        return "";
+        return
+                "Tool code: " + rentedTool.getToolCode() + "\n" +
+                "Tool type: " + rentedTool.getToolType() + "\n" +
+                "Tool brand: " + rentedTool.getBrand() + "\n" +
+                "Rental days: " + rentalDays + "\n" +
+                "Checkout date: " + checkoutDate.format(formatter) + "\n" +
+                "Due date: " + dueDate.format(formatter) + "\n" +
+                "Daily rental charge: $" + String.format("%.2f", rentedTool.getDailyCharge()) + "\n" +
+                "Charge days: " + chargeDays + "\n" +
+                "Pre-discount charge $" + String.format("%.2f", preDiscountCharge) + "\n" +
+                "Discount percent " + discountPercent + "%\n" +
+                "Discount amount $" + String.format("%.2f", discountAmount) + "\n" +
+                "Final charge $" + String.format("%.2f", finalCharge);
     }
 
     public void print() {

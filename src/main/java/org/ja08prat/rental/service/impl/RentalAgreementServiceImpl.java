@@ -6,6 +6,8 @@ import org.ja08prat.rental.service.RentalAgreementService;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import static java.time.temporal.TemporalAdjusters.firstInMonth;
+
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,33 +80,26 @@ public class RentalAgreementServiceImpl implements RentalAgreementService {
 
     private boolean isDateAnObservedJulyFourth(LocalDate date) {
         // if July 3rd is a friday
-        if ("JULY".equalsIgnoreCase(date.getMonth().toString()) &&
-                "FRIDAY".equalsIgnoreCase(date.getDayOfWeek().toString()) &&
-                3 == date.getDayOfMonth()) {
+        if (Month.JULY == date.getMonth() && DayOfWeek.FRIDAY == date.getDayOfWeek() && 3 == date.getDayOfMonth()) {
             return true;
         }
 
         // if july 5th is a monday
-        if ("JULY".equalsIgnoreCase(date.getMonth().toString()) &&
-                "MONDAY".equalsIgnoreCase(date.getDayOfWeek().toString()) &&
-                5 == date.getDayOfMonth()) {
+        if (Month.JULY == date.getMonth() && DayOfWeek.MONDAY == date.getDayOfWeek() && 5 == date.getDayOfMonth()) {
             return true;
         }
 
         // if it is july 4th
-        return "JULY".equalsIgnoreCase(date.getMonth().toString()) &&
-                4 == date.getDayOfMonth();
+        return Month.JULY == date.getMonth() && 4 == date.getDayOfMonth();
     }
 
     private boolean isWeekend(LocalDate date) {
-        return "SATURDAY".equalsIgnoreCase(date.getDayOfWeek().toString()) ||
-                "SUNDAY".equalsIgnoreCase(date.getDayOfWeek().toString());
+        return DayOfWeek.SATURDAY == date.getDayOfWeek() || DayOfWeek.SUNDAY == date.getDayOfWeek();
     }
 
     // calculating if a given date is labor day
     private boolean isLaborDay(LocalDate date) {
-        String month = date.getMonth().toString();
-        if ("SEPTEMBER".equalsIgnoreCase(month)) {
+        if (Month.SEPTEMBER == date.getMonth()) {
             LocalDate firstMonday = date.with(firstInMonth(DayOfWeek.MONDAY));
             return firstMonday.isEqual(date);
         }

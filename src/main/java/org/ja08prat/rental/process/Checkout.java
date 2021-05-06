@@ -13,7 +13,7 @@ public class Checkout {
         this.rentalAgreementService = rentalAgreementService;
     }
 
-    public void checkout(String toolCode, Integer rentalDays, Integer discountPercent, LocalDate checkoutDate) throws Exception {
+    public RentalAgreement checkout(String toolCode, Integer rentalDays, Integer discountPercent, LocalDate checkoutDate) throws Exception {
         // data validation
         if (rentalDays < 1) {
             throw new Exception("Illegal Rental Day Count. You must rent a tool for 1 or more days, please try again.");
@@ -49,8 +49,8 @@ public class Checkout {
         // calculate final charge
         rentalAgreement.setFinalCharge(rentalAgreementService.calculateFinalCharge(rentalAgreement.getPreDiscountCharge(), rentalAgreement.getDiscountAmount()));
 
-        // print rental agreement
-        rentalAgreement.print();
+        // return rental agreement
+        return rentalAgreement;
     }
 
     private Tool buildRentedTool(String toolCode) {

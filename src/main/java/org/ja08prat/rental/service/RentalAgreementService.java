@@ -12,4 +12,6 @@ public interface RentalAgreementService {
     Double calculatePreDiscountCharge(Integer chargeDays, Double dailyCharge);
 
     Double calculateDiscountAmount(Integer discountPercent, Double preDiscountCharge);
+
+    Double calculateFinalCharge(Double preDiscountCharge, Double discountAmount);
 }

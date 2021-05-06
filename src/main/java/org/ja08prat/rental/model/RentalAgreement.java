@@ -8,6 +8,7 @@ public class RentalAgreement {
     // this is a percentage
     private Integer discountPercent;
     private LocalDate checkoutDate;
+
     private LocalDate dueDate;
     private Integer chargeDays;
     private Double preDiscountCharge;

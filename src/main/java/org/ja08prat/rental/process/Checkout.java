@@ -2,10 +2,16 @@ package org.ja08prat.rental.process;
 
 import org.ja08prat.rental.model.RentalAgreement;
 import org.ja08prat.rental.model.Tool;
+import org.ja08prat.rental.service.RentalAgreementService;
 
 import java.time.LocalDate;
 
 public class Checkout {
+    private final RentalAgreementService rentalAgreementService;
+
+    public Checkout(RentalAgreementService rentalAgreementService) {
+        this.rentalAgreementService = rentalAgreementService;
+    }
 
     public void checkout(String toolCode, Integer rentalDays, Integer discountPercent, LocalDate checkoutDate) throws Exception {
         // data validation
@@ -22,11 +28,15 @@ public class Checkout {
 
         // check that rented tool was initialized
         if (rentedTool == null) {
-            throw new Exception("Illegal tool code. LADW, CHNS, JAKR and JAKD are the valid tool codes, please enter a valid tool code");
+            throw new Exception("Illegal tool code. LADW, CHNS, JAKR and JAKD are the valid tool codes, please enter a valid tool code.");
         }
 
         // Initialize rentalAgreement with fields that don't need to be calculated
         RentalAgreement rentalAgreement = new RentalAgreement(rentedTool, rentalDays, discountPercent, checkoutDate);
+
+        // calculate due date
+        rentalAgreement.setDueDate(rentalAgreementService.calculateDueDate(checkoutDate, rentalDays));
+
     }
 
     private Tool buildRentedTool(String toolCode) {

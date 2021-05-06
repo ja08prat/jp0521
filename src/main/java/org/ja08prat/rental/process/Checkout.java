@@ -48,6 +48,9 @@ public class Checkout {
 
         // calculate final charge
         rentalAgreement.setFinalCharge(rentalAgreementService.calculateFinalCharge(rentalAgreement.getPreDiscountCharge(), rentalAgreement.getDiscountAmount()));
+
+        // print rental agreement
+        rentalAgreement.print();
     }
 
     private Tool buildRentedTool(String toolCode) {

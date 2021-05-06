@@ -58,7 +58,15 @@ public class RentalAgreementServiceImpl implements RentalAgreementService {
 
     @Override
     public Double calculatePreDiscountCharge(Integer chargeDays, Double dailyCharge) {
-        Double rawValue = (double) chargeDays * dailyCharge;
+        double rawValue = (double) chargeDays * dailyCharge;
+
+        return Math.round(rawValue * 100.0) / 100.0;
+    }
+
+    @Override
+    public Double calculateDiscountAmount(Integer discountPercent, Double preDiscountCharge) {
+        double discountPercentage = (double) discountPercent / .01;
+        double rawValue = discountPercentage * preDiscountCharge;
 
         return Math.round(rawValue * 100.0) / 100.0;
     }

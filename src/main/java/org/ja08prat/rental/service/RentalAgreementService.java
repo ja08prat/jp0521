@@ -10,4 +10,6 @@ public interface RentalAgreementService {
     Integer calculateChargeDays(LocalDate checkoutDate, LocalDate dueDate, Tool rentedTool);
 
     Double calculatePreDiscountCharge(Integer chargeDays, Double dailyCharge);
+
+    Double calculateDiscountAmount(Integer discountPercent, Double preDiscountCharge);
 }

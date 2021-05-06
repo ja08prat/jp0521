@@ -43,6 +43,8 @@ public class Checkout {
         // calculate pre-discount charge
         rentalAgreement.setPreDiscountCharge(rentalAgreementService.calculatePreDiscountCharge(rentalAgreement.getChargeDays(), rentedTool.getDailyCharge()));
 
+        // calculate discount amount
+        rentalAgreement.setDiscountAmount(rentalAgreementService.calculateDiscountAmount(discountPercent, rentalAgreement.getPreDiscountCharge()));
     }
 
     private Tool buildRentedTool(String toolCode) {

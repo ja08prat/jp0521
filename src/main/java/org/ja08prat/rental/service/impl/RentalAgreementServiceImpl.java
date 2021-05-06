@@ -77,8 +77,8 @@ public class RentalAgreementServiceImpl implements RentalAgreementService {
     }
 
     private boolean isWeekend(LocalDate date) {
-        return "SATURDAY".equalsIgnoreCase(date.getDayOfWeek().toString())
-                || "SUNDAY".equalsIgnoreCase(date.getDayOfWeek().toString());
+        return "SATURDAY".equalsIgnoreCase(date.getDayOfWeek().toString()) ||
+                "SUNDAY".equalsIgnoreCase(date.getDayOfWeek().toString());
     }
 
     // calculating if a given date is labor day

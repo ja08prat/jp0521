@@ -1,23 +1,24 @@
-package org.ja08prat.model;
+package org.ja08prat.rental.model;
 
 import java.time.LocalDate;
 
 public class RentalAgreement {
     private Tool rentedTool;
     private Integer rentalDays;
+    // this is a percentage
     private Integer discountPercent;
-    private LocalDate checkOutDate;
+    private LocalDate checkoutDate;
     private LocalDate dueDate;
     private Integer chargeDays;
     private Double preDiscountCharge;
     private Double discountAmount;
     private Double finalCharge;
 
-    public RentalAgreement(Tool rentedTool, Integer rentalDays, Integer discountPercent, LocalDate checkOutDate) {
+    public RentalAgreement(Tool rentedTool, Integer rentalDays, Integer discountPercent, LocalDate checkoutDate) {
         this.rentedTool = rentedTool;
         this.rentalDays = rentalDays;
         this.discountPercent = discountPercent;
-        this.checkOutDate = checkOutDate;
+        this.checkoutDate = checkoutDate;
     }
 
     public Tool getRentedTool() {
@@ -44,12 +45,12 @@ public class RentalAgreement {
         this.discountPercent = discountPercent;
     }
 
-    public LocalDate getCheckOutDate() {
-        return checkOutDate;
+    public LocalDate getCheckoutDate() {
+        return checkoutDate;
     }
 
-    public void setCheckOutDate(LocalDate checkOutDate) {
-        this.checkOutDate = checkOutDate;
+    public void setCheckoutDate(LocalDate checkoutDate) {
+        this.checkoutDate = checkoutDate;
     }
 
     public LocalDate getDueDate() {
@@ -92,6 +93,7 @@ public class RentalAgreement {
         this.finalCharge = finalCharge;
     }
 
+    // fill this out later
     @Override
     public String toString() {
         return "";

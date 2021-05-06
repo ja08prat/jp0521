@@ -1,4 +1,4 @@
-package org.ja08prat.model;
+package org.ja08prat.rental.model;
 
 public class Tool {
     private String toolType;
@@ -9,6 +9,16 @@ public class Tool {
     private Boolean weekdayCharge;
     private Boolean weekendCharge;
     private Boolean holidayCharge;
+
+    public Tool(String toolType, String brand, String toolCode, Double dailyCharge, Boolean weekdayCharge, Boolean weekendCharge, Boolean holidayCharge) {
+        this.toolType = toolType;
+        this.brand = brand;
+        this.toolCode = toolCode;
+        this.dailyCharge = dailyCharge;
+        this.weekdayCharge = weekdayCharge;
+        this.weekendCharge = weekendCharge;
+        this.holidayCharge = holidayCharge;
+    }
 
     public String getToolType() {
         return toolType;

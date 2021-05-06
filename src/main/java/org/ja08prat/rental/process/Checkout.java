@@ -37,6 +37,9 @@ public class Checkout {
         // calculate due date
         rentalAgreement.setDueDate(rentalAgreementService.calculateDueDate(checkoutDate, rentalDays));
 
+        // calculate charge days
+        rentalAgreement.setChargeDays(rentalAgreementService.calculateChargeDays(checkoutDate, rentalAgreement.getDueDate(), rentedTool));
+
     }
 
     private Tool buildRentedTool(String toolCode) {

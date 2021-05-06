@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RentalAgreementServiceImpl implements RentalAgreementService {
+
     @Override
     public LocalDate calculateDueDate(LocalDate checkoutDate, Integer rentalDays) {
         return checkoutDate.plusDays(rentalDays);

@@ -40,6 +40,9 @@ public class Checkout {
         // calculate charge days
         rentalAgreement.setChargeDays(rentalAgreementService.calculateChargeDays(checkoutDate, rentalAgreement.getDueDate(), rentedTool));
 
+        // calculate pre-discount charge
+        rentalAgreement.setPreDiscountCharge(rentalAgreementService.calculatePreDiscountCharge(rentalAgreement.getChargeDays(), rentedTool.getDailyCharge()));
+
     }
 
     private Tool buildRentedTool(String toolCode) {

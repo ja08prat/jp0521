@@ -56,6 +56,13 @@ public class RentalAgreementServiceImpl implements RentalAgreementService {
         return chargeDays;
     }
 
+    @Override
+    public Double calculatePreDiscountCharge(Integer chargeDays, Double dailyCharge) {
+        Double rawValue = (double) chargeDays * dailyCharge;
+
+        return Math.round(rawValue * 100.0) / 100.0;
+    }
+
     private boolean isDateAnObservedJulyFourth(LocalDate date) {
         // if July 3rd is a friday
         if ("JULY".equalsIgnoreCase(date.getMonth().toString()) &&

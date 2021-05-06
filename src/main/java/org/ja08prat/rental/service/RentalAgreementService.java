@@ -8,4 +8,6 @@ public interface RentalAgreementService {
     LocalDate calculateDueDate(LocalDate checkoutDate, Integer rentalDays);
 
     Integer calculateChargeDays(LocalDate checkoutDate, LocalDate dueDate, Tool rentedTool);
+
+    Double calculatePreDiscountCharge(Integer chargeDays, Double dailyCharge);
 }

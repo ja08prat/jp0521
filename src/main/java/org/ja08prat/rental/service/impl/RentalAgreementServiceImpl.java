@@ -53,7 +53,7 @@ public class RentalAgreementServiceImpl implements RentalAgreementService {
 
     @Override
     public double calculatePreDiscountCharge(int chargeDays, double dailyCharge) {
-        return multiplyAndRoundDoubleValues((double) chargeDays, dailyCharge);
+        return multiplyAndRoundDoubleValues(chargeDays, dailyCharge);
     }
 
     @Override

@@ -13,7 +13,7 @@ public class Checkout {
         this.rentalAgreementService = rentalAgreementService;
     }
 
-    public RentalAgreement checkout(String toolCode, int rentalDays, int discountPercent, LocalDate checkoutDate) throws Exception {
+    public RentalAgreement processCheckout(String toolCode, int rentalDays, int discountPercent, LocalDate checkoutDate) throws Exception {
         // data validation
         if (rentalDays < 1) {
             throw new Exception("Illegal Rental Day Count. You must rent a tool for 1 or more days, please try again.");

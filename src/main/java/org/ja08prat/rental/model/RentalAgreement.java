@@ -4,12 +4,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class RentalAgreement {
+    // initialized values
     private Tool rentedTool;
     private int rentalDays;
-    // this is a percentage
     private int discountPercent;
     private LocalDate checkoutDate;
-
+    // calculated values
     private LocalDate dueDate;
     private int chargeDays;
     private double preDiscountCharge;

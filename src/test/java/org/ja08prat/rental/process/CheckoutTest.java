@@ -85,4 +85,29 @@ public class CheckoutTest {
         assertEquals(3.35, result.getFinalCharge(), 0.00001);
     }
 
+    /**
+     * This method tests the functionality of processCheckout(),
+     * will test with a DeWalt Jackhammer, checkout date of 9/3/15,
+     * 6 rental days and a discount of 0%
+     */
+    @Test
+    public void testProcessCheckoutJackhammerLaborDay() throws Exception {
+        String toolCode = "JAKD";
+        int rentalDays = 6;
+        int discountPercentage = 0;
+        LocalDate checkoutDate = LocalDate.of(2015, Month.SEPTEMBER, 3);
+
+        RentalAgreement result = checkout.processCheckout(toolCode, rentalDays, discountPercentage, checkoutDate);
+
+        assertEquals("Jackhammer", result.getRentedTool().getToolType());
+        assertEquals("DeWalt", result.getRentedTool().getBrand());
+        assertEquals(LocalDate.of(2015, Month.SEPTEMBER, 9), result.getDueDate());
+        assertEquals(3, result.getChargeDays());
+        assertEquals(8.97, result.getPreDiscountCharge(), 0.00001);
+        assertEquals(0.00, result.getDiscountAmount(), 0.00001);
+        assertEquals(8.97, result.getFinalCharge(), 0.00001);
+    }
+
+
+
 }

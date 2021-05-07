@@ -49,9 +49,31 @@ public class CheckoutTest {
     public void testProcessCheckoutRentalDaysLessThanOne() {
         String toolCode = "JAKR";
         int rentalDays = 0;
-        int discountPercentage = 101;
+        int discountPercentage = 10;
         LocalDate checkoutDate = LocalDate.of(2015, Month.SEPTEMBER, 3);
         String expectedMessage = "Illegal Rental Day Count. You must rent a tool for 1 or more days, please try again.";
+
+        String message = "";
+        try {
+            RentalAgreement result = checkout.processCheckout(toolCode, rentalDays, discountPercentage, checkoutDate);
+        } catch (Exception e) {
+            message = e.getMessage();
+        }
+
+        assertEquals(expectedMessage, message);
+    }
+
+    /**
+     * This method tests the functionality of processCheckout(),
+     * will throw an exception because an illegal toolCode will be provided
+     */
+    @Test
+    public void testProcessCheckoutIllegalToolCode() {
+        String toolCode = "Not A Tool Code";
+        int rentalDays = 3;
+        int discountPercentage = 10;
+        LocalDate checkoutDate = LocalDate.of(2015, Month.SEPTEMBER, 3);
+        String expectedMessage = "Illegal tool code. LADW, CHNS, JAKR and JAKD are the valid tool codes, please enter a valid tool code.";
 
         String message = "";
         try {

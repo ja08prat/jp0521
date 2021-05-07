@@ -27,7 +27,7 @@ public class RentalAgreementServiceImpl implements RentalAgreementService {
         List<LocalDate> daysThatTriggeredAnIncrement = new ArrayList<>();
 
         // iterate over date range to test each individual date in that range
-        for (LocalDate date = beginDate; date.isBefore(dueDate); date = date.plusDays(1)) {
+        for (LocalDate date = beginDate; date.isBefore(dueDate) || date.isEqual(dueDate); date = date.plusDays(1)) {
             // date is a weekend
             if (isWeekend(date)) {
                 // tool has a weekend charge and this day hasn't already been counted

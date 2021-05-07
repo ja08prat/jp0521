@@ -1,5 +1,6 @@
 package org.ja08prat.rental.service.impl;
 
+import org.ja08prat.rental.model.Tool;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -31,4 +32,23 @@ public class RentalAgreementServiceImplTest {
 
         assertEquals(expectedResult, result);
     }
+
+    /**
+     * This method tests the functionality of calculateChargeDays() with the following case:
+     * Time span is weekdays only, with no holidays.
+     * Rented tool is a ladder, which charges on weekdays and not holidays.
+     */
+    @Test
+    public void testCalculateChargeDaysWeekdaysNoHoliday() {
+        Tool rentedTool = new Tool("Ladder", "Werner",
+                "LADW", 1.99, true, true, false);
+        LocalDate checkoutDate = LocalDate.of(2020, Month.MAY, 3);
+        LocalDate dueDate = LocalDate.of(2020, Month.MAY, 8);
+        Integer expectedChargeDays = 5;
+
+        Integer result = rentalAgreementService.calculateChargeDays(checkoutDate, dueDate, rentedTool);
+
+        assertEquals(expectedChargeDays, result);
+    }
+
 }

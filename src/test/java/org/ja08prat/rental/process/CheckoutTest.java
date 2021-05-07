@@ -43,6 +43,28 @@ public class CheckoutTest {
 
     /**
      * This method tests the functionality of processCheckout(),
+     * will throw an exception because rental days will be less than 1
+     */
+    @Test
+    public void testProcessCheckoutRentalDaysLessThanOne() {
+        String toolCode = "JAKR";
+        int rentalDays = 0;
+        int discountPercentage = 101;
+        LocalDate checkoutDate = LocalDate.of(2015, Month.SEPTEMBER, 3);
+        String expectedMessage = "Illegal Rental Day Count. You must rent a tool for 1 or more days, please try again.";
+
+        String message = "";
+        try {
+            RentalAgreement result = checkout.processCheckout(toolCode, rentalDays, discountPercentage, checkoutDate);
+        } catch (Exception e) {
+            message = e.getMessage();
+        }
+
+        assertEquals(expectedMessage, message);
+    }
+
+    /**
+     * This method tests the functionality of processCheckout(),
      * will test with a Ladder, checkout date of 7/2/20,
      * 3 rental days and a discount of 10%
      */

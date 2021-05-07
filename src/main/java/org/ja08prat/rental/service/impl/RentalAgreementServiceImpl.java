@@ -8,8 +8,6 @@ import java.time.LocalDate;
 import static java.time.temporal.TemporalAdjusters.firstInMonth;
 
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.List;
 
 public class RentalAgreementServiceImpl implements RentalAgreementService {
 
@@ -24,16 +22,14 @@ public class RentalAgreementServiceImpl implements RentalAgreementService {
         // and including due date
         LocalDate beginDate = checkoutDate.plusDays(1);
         Integer chargeDays = 0;
-        List<LocalDate> daysThatTriggeredAnIncrement = new ArrayList<>();
 
         // iterate over date range to test each individual date in that range
         for (LocalDate date = beginDate; date.isBefore(dueDate) || date.isEqual(dueDate); date = date.plusDays(1)) {
             // date is a weekend
             if (isWeekend(date)) {
                 // tool has a weekend charge and this day hasn't already been counted
-                if (rentedTool.isWeekendCharge() && !daysThatTriggeredAnIncrement.contains(date)) {
+                if (rentedTool.isWeekendCharge()) {
                     chargeDays++;
-                    daysThatTriggeredAnIncrement.add(date);
                 }
             } else { // date is a weekday
                 boolean isDateAnObservedJulyFourth = isDateAnObservedJulyFourth(date);
@@ -42,15 +38,13 @@ public class RentalAgreementServiceImpl implements RentalAgreementService {
                 // weekdays are split into two buckets: holidays and not holidays
 
                 // if date is an observed holiday and tool charges holidays and this day hasn't already been counted
-                if ((isLaborDay || isDateAnObservedJulyFourth) && rentedTool.isHolidayCharge() && !daysThatTriggeredAnIncrement.contains(date)) {
+                if ((isLaborDay || isDateAnObservedJulyFourth) && rentedTool.isHolidayCharge()) {
                     chargeDays++;
-                    daysThatTriggeredAnIncrement.add(date);
                 }
 
                 // if it is not an observed holiday and this day hasn't already been counted
-                if (!(isLaborDay || isDateAnObservedJulyFourth) && !daysThatTriggeredAnIncrement.contains(date)) {
+                if (!(isLaborDay || isDateAnObservedJulyFourth)) {
                     chargeDays++;
-                    daysThatTriggeredAnIncrement.add(date);
                 }
             }
 

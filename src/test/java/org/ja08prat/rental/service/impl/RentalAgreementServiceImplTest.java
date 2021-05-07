@@ -39,7 +39,7 @@ public class RentalAgreementServiceImplTest {
      * Rented tool is a ladder, which charges on weekdays and not holidays.
      */
     @Test
-    public void testCalculateChargeDaysWeekdaysNoHoliday() {
+    public void testCalculateChargeDaysWeekdaysNoHolidayLadder() {
         Tool rentedTool = new Tool("Ladder", "Werner",
                 "LADW", 1.99, true, true, false);
         LocalDate checkoutDate = LocalDate.of(2020, Month.MAY, 3);
@@ -57,7 +57,7 @@ public class RentalAgreementServiceImplTest {
      * Rented tool is a chainsaw, which charges on weekdays, holidays but not weekends.
      */
     @Test
-    public void testCalculateChargeDaysWeekdaysWeekendsLaborDay() {
+    public void testCalculateChargeDaysWeekdaysWeekendsLaborDayChainsaw() {
         Tool rentedTool = new Tool("Chainsaw", "Stihl",
                 "CHNS", 1.49, true, false, true);
         LocalDate checkoutDate = LocalDate.of(2020, Month.SEPTEMBER, 1);
@@ -105,4 +105,18 @@ public class RentalAgreementServiceImplTest {
         assertEquals(expectedChargeDays, result);
     }
 
+    /**
+     * This method tests the functionality of calculateDueDate(),
+     * chargeDays and daily charge are multiplied and rounded
+     */
+    @Test
+    public void testCalculatePreDiscountCharge() {
+        int chargeDays = 5;
+        double dailyCharge = 1.955;
+        double expectedResult = 9.78;
+
+        double result = rentalAgreementService.calculatePreDiscountCharge(chargeDays, dailyCharge);
+
+        assertEquals(expectedResult, result, 0.00001);
+    }
 }

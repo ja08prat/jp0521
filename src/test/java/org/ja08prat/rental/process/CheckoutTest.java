@@ -47,20 +47,20 @@ public class CheckoutTest {
      * 3 rental days and a discount of 10%
      */
     @Test
-    public void testProcessCheckoutLadderJulyFourth() throws Exception {
-        String toolCode = "LADW";
-        int rentalDays = 3;
-        int discountPercentage = 10;
-        LocalDate checkoutDate = LocalDate.of(2020, Month.JULY, 2);
+    public void testProcessCheckoutChainsawJulyFourth() throws Exception {
+        String toolCode = "CHNS";
+        int rentalDays = 5;
+        int discountPercentage = 25;
+        LocalDate checkoutDate = LocalDate.of(2015, Month.JULY, 2);
 
         RentalAgreement result = checkout.processCheckout(toolCode, rentalDays, discountPercentage, checkoutDate);
 
-        assertEquals("Ladder", result.getRentedTool().getToolType());
-        assertEquals(LocalDate.of(2020, Month.JULY, 5), result.getDueDate());
-        assertEquals(2, result.getChargeDays());
-        assertEquals(3.98, result.getPreDiscountCharge(), 0.00001);
-        assertEquals(0.40, result.getDiscountAmount(), 0.00001);
-        assertEquals(3.58, result.getFinalCharge(), 0.00001);
+        assertEquals("Chainsaw", result.getRentedTool().getToolType());
+        assertEquals(LocalDate.of(2015, Month.JULY, 7), result.getDueDate());
+        assertEquals(3, result.getChargeDays());
+        assertEquals(4.47, result.getPreDiscountCharge(), 0.00001);
+        assertEquals(1.12, result.getDiscountAmount(), 0.00001);
+        assertEquals(3.35, result.getFinalCharge(), 0.00001);
     }
 
 }

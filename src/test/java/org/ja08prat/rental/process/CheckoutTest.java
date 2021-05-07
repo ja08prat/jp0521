@@ -41,4 +41,26 @@ public class CheckoutTest {
         assertEquals(expectedMessage, message);
     }
 
+    /**
+     * This method tests the functionality of processCheckout(),
+     * will test with a Ladder, checkout date of 7/2/20,
+     * 3 rental days and a discount of 10%
+     */
+    @Test
+    public void testProcessCheckoutLadderJulyFourth() throws Exception {
+        String toolCode = "LADW";
+        int rentalDays = 3;
+        int discountPercentage = 10;
+        LocalDate checkoutDate = LocalDate.of(2020, Month.JULY, 2);
+
+        RentalAgreement result = checkout.processCheckout(toolCode, rentalDays, discountPercentage, checkoutDate);
+
+        assertEquals("Ladder", result.getRentedTool().getToolType());
+        assertEquals(LocalDate.of(2020, Month.JULY, 5), result.getDueDate());
+        assertEquals(2, result.getChargeDays());
+        assertEquals(3.98, result.getPreDiscountCharge(), 0.00001);
+        assertEquals(0.40, result.getDiscountAmount(), 0.00001);
+        assertEquals(3.58, result.getFinalCharge(), 0.00001);
+    }
+
 }

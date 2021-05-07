@@ -75,12 +75,30 @@ public class RentalAgreementServiceImplTest {
      * Rented tool is a chainsaw, which charges on weekdays, holidays but not weekends.
      */
     @Test
-    public void testCalculateChargeDaysWeekdaysWeekendsJulyFourth() {
+    public void testCalculateChargeDaysWeekdaysWeekendsJulyFourthChainsaw() {
         Tool rentedTool = new Tool("Chainsaw", "Stihl",
                 "CHNS", 1.49, true, false, true);
         LocalDate checkoutDate = LocalDate.of(2020, Month.JULY, 1);
         LocalDate dueDate = LocalDate.of(2020, Month.JULY, 7);
         int expectedChargeDays = 4;
+
+        int result = rentalAgreementService.calculateChargeDays(checkoutDate, dueDate, rentedTool);
+
+        assertEquals(expectedChargeDays, result);
+    }
+
+    /**
+     * This method tests the functionality of calculateChargeDays() with the following case:
+     * Time span covers weekdays, weekends and an observed July Fourth.
+     * Rented tool is a Ladder, which charges on weekdays, weekends, but not holidays.
+     */
+    @Test
+    public void testCalculateChargeDaysWeekdaysWeekendsJulyFourthLadder() {
+        Tool rentedTool = new Tool("Ladder", "Werner",
+                "LADW", 1.99, true, true, false);
+        LocalDate checkoutDate = LocalDate.of(2020, Month.JULY, 1);
+        LocalDate dueDate = LocalDate.of(2020, Month.JULY, 7);
+        int expectedChargeDays = 5;
 
         int result = rentalAgreementService.calculateChargeDays(checkoutDate, dueDate, rentedTool);
 

@@ -58,7 +58,7 @@ public class RentalAgreementServiceImpl implements RentalAgreementService {
 
     @Override
     public double calculateDiscountAmount(int discountPercent, double preDiscountCharge) {
-        double discountPercentage = (double) discountPercent / .01;
+        double discountPercentage = (double) discountPercent * .01;
         return multiplyAndRoundDoubleValues(discountPercentage, preDiscountCharge);
     }
 

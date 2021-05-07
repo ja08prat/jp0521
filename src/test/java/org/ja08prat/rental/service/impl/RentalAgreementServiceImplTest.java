@@ -106,7 +106,7 @@ public class RentalAgreementServiceImplTest {
     }
 
     /**
-     * This method tests the functionality of calculateDueDate(),
+     * This method tests the functionality of calculatePreDiscountCharge(),
      * chargeDays and daily charge are multiplied and rounded
      */
     @Test
@@ -116,6 +116,21 @@ public class RentalAgreementServiceImplTest {
         double expectedResult = 9.78;
 
         double result = rentalAgreementService.calculatePreDiscountCharge(chargeDays, dailyCharge);
+
+        assertEquals(expectedResult, result, 0.00001);
+    }
+
+    /**
+     * This method tests the functionality of calculateDiscountAmount(),
+     * discount percentage and pre discount charge are multiplied and rounded
+     */
+    @Test
+    public void testCalculateDiscountAmount() {
+        int discountPercentage = 17;
+        double preDiscountCharge = 45.67;
+        double expectedResult = 7.76;
+
+        double result = rentalAgreementService.calculateDiscountAmount(discountPercentage, preDiscountCharge);
 
         assertEquals(expectedResult, result, 0.00001);
     }

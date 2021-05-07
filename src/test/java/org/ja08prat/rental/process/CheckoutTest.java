@@ -114,7 +114,7 @@ public class CheckoutTest {
      * 9 rental days and a discount of 0%
      */
     @Test
-    public void testProcessCheckoutJackhammerJulyFourth() throws Exception {
+    public void testProcessCheckoutJackhammerJulyFourthNoDiscount() throws Exception {
         String toolCode = "JAKR";
         int rentalDays = 9;
         int discountPercentage = 0;
@@ -131,6 +131,28 @@ public class CheckoutTest {
         assertEquals(14.95, result.getFinalCharge(), 0.00001);
     }
 
+    /**
+     * This method tests the functionality of processCheckout(),
+     * will test with a Ridgid Jackhammer, checkout date of 7/2/20,
+     * 4 rental days and a discount of 50%
+     */
+    @Test
+    public void testProcessCheckoutJackhammerJulyFourthDiscount() throws Exception {
+        String toolCode = "JAKR";
+        int rentalDays = 4;
+        int discountPercentage = 50;
+        LocalDate checkoutDate = LocalDate.of(2020, Month.JULY, 2);
+
+        RentalAgreement result = checkout.processCheckout(toolCode, rentalDays, discountPercentage, checkoutDate);
+
+        assertEquals("Jackhammer", result.getRentedTool().getToolType());
+        assertEquals("Ridgid", result.getRentedTool().getBrand());
+        assertEquals(LocalDate.of(2020, Month.JULY, 6), result.getDueDate());
+        assertEquals(1, result.getChargeDays());
+        assertEquals(2.99, result.getPreDiscountCharge(), 0.00001);
+        assertEquals(1.50, result.getDiscountAmount(), 0.00001);
+        assertEquals(1.49, result.getFinalCharge(), 0.00001);
+    }
 
 
 }

@@ -134,4 +134,19 @@ public class RentalAgreementServiceImplTest {
 
         assertEquals(expectedResult, result, 0.00001);
     }
+
+    /**
+     * This method tests the functionality of calculateDueDate(),
+     * rental days are added to a checkout date
+     */
+    @Test
+    public void testCalculateFinalCharge() {
+        double discountAmount = 7.76;
+        double preDiscountCharge = 45.67;
+        double expectedResult = 37.91;
+
+        double result = rentalAgreementService.calculateFinalCharge(preDiscountCharge, discountAmount);
+
+        assertEquals(expectedResult, result, 0.00001);
+    }
 }

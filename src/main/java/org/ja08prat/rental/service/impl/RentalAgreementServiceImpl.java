@@ -25,24 +25,22 @@ public class RentalAgreementServiceImpl implements RentalAgreementService {
 
         // iterate over date range to test each individual date in that range
         for (LocalDate date = beginDate; date.isBefore(dueDate) || date.isEqual(dueDate); date = date.plusDays(1)) {
-            // date is a weekend
-            if (isWeekend(date)) {
-                // tool has a weekend charge and this day hasn't already been counted
+            if (isWeekend(date)) { // date is a weekend
+                // tool has a weekend charge
                 if (rentedTool.isWeekendCharge()) {
                     chargeDays++;
                 }
             } else { // date is a weekday
                 boolean isDateAnObservedJulyFourth = isDateAnObservedJulyFourth(date);
                 boolean isLaborDay = isLaborDay(date);
-
                 // weekdays are split into two buckets: holidays and not holidays
 
-                // if date is an observed holiday and tool charges holidays and this day hasn't already been counted
+                // if date is an observed holiday and tool charges holidays
                 if ((isLaborDay || isDateAnObservedJulyFourth) && rentedTool.isHolidayCharge()) {
                     chargeDays++;
                 }
 
-                // if it is not an observed holiday and this day hasn't already been counted
+                // if it is not an observed holiday
                 if (!(isLaborDay || isDateAnObservedJulyFourth)) {
                     chargeDays++;
                 }

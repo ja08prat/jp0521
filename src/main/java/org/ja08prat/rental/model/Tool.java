@@ -4,13 +4,13 @@ public class Tool {
     private String toolType;
     private String brand;
     private String toolCode;
-    private Double dailyCharge;
+    private double dailyCharge;
     // might remove weekday charge later
-    private Boolean weekdayCharge;
-    private Boolean weekendCharge;
-    private Boolean holidayCharge;
+    private boolean weekdayCharge;
+    private boolean weekendCharge;
+    private boolean holidayCharge;
 
-    public Tool(String toolType, String brand, String toolCode, Double dailyCharge, Boolean weekdayCharge, Boolean weekendCharge, Boolean holidayCharge) {
+    public Tool(String toolType, String brand, String toolCode, double dailyCharge, boolean weekdayCharge, boolean weekendCharge, boolean holidayCharge) {
         this.toolType = toolType;
         this.brand = brand;
         this.toolCode = toolCode;
@@ -44,35 +44,35 @@ public class Tool {
         this.toolCode = toolCode;
     }
 
-    public Double getDailyCharge() {
+    public double getDailyCharge() {
         return dailyCharge;
     }
 
-    public void setDailyCharge(Double dailyCharge) {
+    public void setDailyCharge(double dailyCharge) {
         this.dailyCharge = dailyCharge;
     }
 
-    public Boolean isWeekdayCharge() {
+    public boolean isWeekdayCharge() {
         return weekdayCharge;
     }
 
-    public void setWeekdayCharge(Boolean weekdayCharge) {
+    public void setWeekdayCharge(boolean weekdayCharge) {
         this.weekdayCharge = weekdayCharge;
     }
 
-    public Boolean isWeekendCharge() {
+    public boolean isWeekendCharge() {
         return weekendCharge;
     }
 
-    public void setWeekendCharge(Boolean weekendCharge) {
+    public void setWeekendCharge(boolean weekendCharge) {
         this.weekendCharge = weekendCharge;
     }
 
-    public Boolean isHolidayCharge() {
+    public boolean isHolidayCharge() {
         return holidayCharge;
     }
 
-    public void setHolidayCharge(Boolean holidayCharge) {
+    public void setHolidayCharge(boolean holidayCharge) {
         this.holidayCharge = holidayCharge;
     }
 }

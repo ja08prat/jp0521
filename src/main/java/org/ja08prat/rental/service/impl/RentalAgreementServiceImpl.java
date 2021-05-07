@@ -12,16 +12,16 @@ import java.time.Month;
 public class RentalAgreementServiceImpl implements RentalAgreementService {
 
     @Override
-    public LocalDate calculateDueDate(LocalDate checkoutDate, Integer rentalDays) {
+    public LocalDate calculateDueDate(LocalDate checkoutDate, int rentalDays) {
         return checkoutDate.plusDays(rentalDays);
     }
 
     @Override
-    public Integer calculateChargeDays(LocalDate checkoutDate, LocalDate dueDate, Tool rentedTool) {
+    public int calculateChargeDays(LocalDate checkoutDate, LocalDate dueDate, Tool rentedTool) {
         // calculate correct inclusive date span first, which is day after checkout date up to
         // and including due date
         LocalDate beginDate = checkoutDate.plusDays(1);
-        Integer chargeDays = 0;
+        int chargeDays = 0;
 
         // iterate over date range to test each individual date in that range
         for (LocalDate date = beginDate; date.isBefore(dueDate) || date.isEqual(dueDate); date = date.plusDays(1)) {
@@ -54,18 +54,18 @@ public class RentalAgreementServiceImpl implements RentalAgreementService {
     }
 
     @Override
-    public Double calculatePreDiscountCharge(Integer chargeDays, Double dailyCharge) {
+    public double calculatePreDiscountCharge(int chargeDays, double dailyCharge) {
         return multiplyAndRoundDoubleValues((double) chargeDays, dailyCharge);
     }
 
     @Override
-    public Double calculateDiscountAmount(Integer discountPercent, Double preDiscountCharge) {
+    public double calculateDiscountAmount(int discountPercent, double preDiscountCharge) {
         double discountPercentage = (double) discountPercent / .01;
         return multiplyAndRoundDoubleValues(discountPercentage, preDiscountCharge);
     }
 
     @Override
-    public Double calculateFinalCharge(Double preDiscountCharge, Double discountAmount) {
+    public double calculateFinalCharge(double preDiscountCharge, double discountAmount) {
         return preDiscountCharge - discountAmount;
     }
 
@@ -98,7 +98,7 @@ public class RentalAgreementServiceImpl implements RentalAgreementService {
         return false;
     }
 
-    private Double multiplyAndRoundDoubleValues(Double double1, Double double2) {
+    private double multiplyAndRoundDoubleValues(double double1, double double2) {
         double rawValue = double1 * double2;
 
         return Math.round(rawValue * 100.0) / 100.0;

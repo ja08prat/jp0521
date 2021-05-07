@@ -5,20 +5,20 @@ import java.time.format.DateTimeFormatter;
 
 public class RentalAgreement {
     private Tool rentedTool;
-    private Integer rentalDays;
+    private int rentalDays;
     // this is a percentage
-    private Integer discountPercent;
+    private int discountPercent;
     private LocalDate checkoutDate;
 
     private LocalDate dueDate;
-    private Integer chargeDays;
-    private Double preDiscountCharge;
-    private Double discountAmount;
-    private Double finalCharge;
+    private int chargeDays;
+    private double preDiscountCharge;
+    private double discountAmount;
+    private double finalCharge;
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy");
 
-    public RentalAgreement(Tool rentedTool, Integer rentalDays, Integer discountPercent, LocalDate checkoutDate) {
+    public RentalAgreement(Tool rentedTool, int rentalDays, int discountPercent, LocalDate checkoutDate) {
         this.rentedTool = rentedTool;
         this.rentalDays = rentalDays;
         this.discountPercent = discountPercent;
@@ -33,19 +33,19 @@ public class RentalAgreement {
         this.rentedTool = rentedTool;
     }
 
-    public Integer getRentalDays() {
+    public int getRentalDays() {
         return rentalDays;
     }
 
-    public void setRentalDays(Integer rentalDays) {
+    public void setRentalDays(int rentalDays) {
         this.rentalDays = rentalDays;
     }
 
-    public Integer getDiscountPercent() {
+    public int getDiscountPercent() {
         return discountPercent;
     }
 
-    public void setDiscountPercent(Integer discountPercent) {
+    public void setDiscountPercent(int discountPercent) {
         this.discountPercent = discountPercent;
     }
 
@@ -65,35 +65,35 @@ public class RentalAgreement {
         this.dueDate = dueDate;
     }
 
-    public Integer getChargeDays() {
+    public int getChargeDays() {
         return chargeDays;
     }
 
-    public void setChargeDays(Integer chargeDays) {
+    public void setChargeDays(int chargeDays) {
         this.chargeDays = chargeDays;
     }
 
-    public Double getPreDiscountCharge() {
+    public double getPreDiscountCharge() {
         return preDiscountCharge;
     }
 
-    public void setPreDiscountCharge(Double preDiscountCharge) {
+    public void setPreDiscountCharge(double preDiscountCharge) {
         this.preDiscountCharge = preDiscountCharge;
     }
 
-    public Double getDiscountAmount() {
+    public double getDiscountAmount() {
         return discountAmount;
     }
 
-    public void setDiscountAmount(Double discountAmount) {
+    public void setDiscountAmount(double discountAmount) {
         this.discountAmount = discountAmount;
     }
 
-    public Double getFinalCharge() {
+    public double getFinalCharge() {
         return finalCharge;
     }
 
-    public void setFinalCharge(Double finalCharge) {
+    public void setFinalCharge(double finalCharge) {
         this.finalCharge = finalCharge;
     }
 

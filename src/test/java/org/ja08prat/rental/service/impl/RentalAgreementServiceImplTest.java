@@ -25,7 +25,7 @@ public class RentalAgreementServiceImplTest {
     @Test
     public void testCalculateDueDate() {
         LocalDate checkoutDate = LocalDate.of(2020, Month.NOVEMBER, 8);
-        Integer rentalDays = 7;
+        int rentalDays = 7;
         LocalDate expectedResult = LocalDate.of(2020, Month.NOVEMBER, 15);
 
         LocalDate result = rentalAgreementService.calculateDueDate(checkoutDate, rentalDays);
@@ -44,9 +44,9 @@ public class RentalAgreementServiceImplTest {
                 "LADW", 1.99, true, true, false);
         LocalDate checkoutDate = LocalDate.of(2020, Month.MAY, 3);
         LocalDate dueDate = LocalDate.of(2020, Month.MAY, 8);
-        Integer expectedChargeDays = 5;
+        int expectedChargeDays = 5;
 
-        Integer result = rentalAgreementService.calculateChargeDays(checkoutDate, dueDate, rentedTool);
+        int result = rentalAgreementService.calculateChargeDays(checkoutDate, dueDate, rentedTool);
 
         assertEquals(expectedChargeDays, result);
     }
@@ -62,9 +62,9 @@ public class RentalAgreementServiceImplTest {
                 "CHNS", 1.49, true, false, true);
         LocalDate checkoutDate = LocalDate.of(2020, Month.SEPTEMBER, 1);
         LocalDate dueDate = LocalDate.of(2020, Month.SEPTEMBER, 9);
-        Integer expectedChargeDays = 6;
+        int expectedChargeDays = 6;
 
-        Integer result = rentalAgreementService.calculateChargeDays(checkoutDate, dueDate, rentedTool);
+        int result = rentalAgreementService.calculateChargeDays(checkoutDate, dueDate, rentedTool);
 
         assertEquals(expectedChargeDays, result);
     }

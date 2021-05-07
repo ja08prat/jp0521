@@ -5,13 +5,13 @@ import org.ja08prat.rental.model.Tool;
 import java.time.LocalDate;
 
 public interface RentalAgreementService {
-    LocalDate calculateDueDate(LocalDate checkoutDate, Integer rentalDays);
+    LocalDate calculateDueDate(LocalDate checkoutDate, int rentalDays);
 
-    Integer calculateChargeDays(LocalDate checkoutDate, LocalDate dueDate, Tool rentedTool);
+    int calculateChargeDays(LocalDate checkoutDate, LocalDate dueDate, Tool rentedTool);
 
-    Double calculatePreDiscountCharge(Integer chargeDays, Double dailyCharge);
+    double calculatePreDiscountCharge(int chargeDays, double dailyCharge);
 
-    Double calculateDiscountAmount(Integer discountPercent, Double preDiscountCharge);
+    double calculateDiscountAmount(int discountPercent, double preDiscountCharge);
 
-    Double calculateFinalCharge(Double preDiscountCharge, Double discountAmount);
+    double calculateFinalCharge(double preDiscountCharge, double discountAmount);
 }

@@ -10,7 +10,7 @@ import static java.time.temporal.TemporalAdjusters.firstInMonth;
 import java.time.Month;
 
 /**
- *
+ * Implementation of the Rental Agreement interface
  */
 public class RentalAgreementServiceImpl implements RentalAgreementService {
 

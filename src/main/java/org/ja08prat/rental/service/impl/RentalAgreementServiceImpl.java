@@ -9,6 +9,9 @@ import static java.time.temporal.TemporalAdjusters.firstInMonth;
 
 import java.time.Month;
 
+/**
+ *
+ */
 public class RentalAgreementServiceImpl implements RentalAgreementService {
 
     @Override
@@ -33,8 +36,8 @@ public class RentalAgreementServiceImpl implements RentalAgreementService {
             } else { // date is a weekday
                 boolean isDateAnObservedJulyFourth = isDateAnObservedJulyFourth(date);
                 boolean isLaborDay = isLaborDay(date);
-                // weekdays are split into two buckets: holidays and not holidays
 
+                // weekdays are split into two buckets: holidays and not holidays
                 // if date is an observed holiday and tool charges holidays
                 if ((isLaborDay || isDateAnObservedJulyFourth) && rentedTool.isHolidayCharge()) {
                     chargeDays++;
@@ -67,6 +70,13 @@ public class RentalAgreementServiceImpl implements RentalAgreementService {
         return preDiscountCharge - discountAmount;
     }
 
+    /**
+     * Helper method that determines if a day is an observed July 4th holiday.
+     * If July 4th falls on weekend, it is observed on the closest weekday
+     * (if Sat, then Friday the 3rd, if Sunday, then Monday the 5th)
+     * @param date - a given date
+     * @return     - is this date an observed July 4th
+     */
     private boolean isDateAnObservedJulyFourth(LocalDate date) {
         // if July 3rd is a friday
         if (Month.JULY == date.getMonth() && DayOfWeek.FRIDAY == date.getDayOfWeek() && 3 == date.getDayOfMonth()) {
@@ -82,11 +92,20 @@ public class RentalAgreementServiceImpl implements RentalAgreementService {
         return Month.JULY == date.getMonth() && 4 == date.getDayOfMonth();
     }
 
+    /**
+     * Helper method that determines if a given date is a weekend
+     * @param date - a given date
+     * @return     - is this date a weekend
+     */
     private boolean isWeekend(LocalDate date) {
         return DayOfWeek.SATURDAY == date.getDayOfWeek() || DayOfWeek.SUNDAY == date.getDayOfWeek();
     }
 
-    // calculating if a given date is labor day
+    /**
+     * Helper method that calculates if a given date is labor day
+     * @param date - a given date
+     * @return     - is this date labor day
+     */
     private boolean isLaborDay(LocalDate date) {
         if (Month.SEPTEMBER == date.getMonth()) {
             LocalDate firstMonday = date.with(firstInMonth(DayOfWeek.MONDAY));
@@ -96,6 +115,12 @@ public class RentalAgreementServiceImpl implements RentalAgreementService {
         return false;
     }
 
+    /**
+     * Helper method that multiplies and rounds two given double values
+     * @param double1 - first number to be multiplied
+     * @param double2 - second number to be multiplied
+     * @return        - multiplied and rounded value
+     */
     private double multiplyAndRoundDoubleValues(double double1, double double2) {
         double rawValue = double1 * double2;
 

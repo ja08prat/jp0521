@@ -1,11 +1,13 @@
 package org.ja08prat.rental.model;
 
+/**
+ * This class is a data model that represents a tool to be rented
+ */
 public class Tool {
     private String toolType;
     private String brand;
     private String toolCode;
     private double dailyCharge;
-    // might remove weekday charge later
     private boolean weekdayCharge;
     private boolean weekendCharge;
     private boolean holidayCharge;

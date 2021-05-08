@@ -9,6 +9,9 @@ import java.time.Month;
 
 import static org.junit.Assert.*;
 
+/**
+ * This class tests the RentalAgreementService
+ */
 public class RentalAgreementServiceImplTest {
 
     private static RentalAgreementServiceImpl rentalAgreementService;

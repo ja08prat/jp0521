@@ -6,13 +6,29 @@ import org.ja08prat.rental.service.RentalAgreementService;
 
 import java.time.LocalDate;
 
+/**
+ * Class processes and generates a Rental Agreement
+ */
 public class Checkout {
+
+    // the rental agreement service
     private final RentalAgreementService rentalAgreementService;
 
     public Checkout(RentalAgreementService rentalAgreementService) {
         this.rentalAgreementService = rentalAgreementService;
     }
 
+    /**
+     * Method processes the check out of a tool by generating a rental agreement
+     * @param toolCode        - unique identifier for a tool
+     * @param rentalDays      - number of days a tool will be rented
+     * @param discountPercent - percent discount
+     * @param checkoutDate    - date tool was rented
+     * @return                - completed rental agreement
+     * @throws Exception      - an exception is thrown in the case of an unknown tool code,
+     *                          rental days being 0 or less
+     *                          discount percentage not being between 0 and 100
+     */
     public RentalAgreement processCheckout(String toolCode, int rentalDays, int discountPercent, LocalDate checkoutDate) throws Exception {
         // data validation
         if (rentalDays < 1) {
@@ -49,10 +65,14 @@ public class Checkout {
         // calculate final charge
         rentalAgreement.setFinalCharge(rentalAgreementService.calculateFinalCharge(rentalAgreement.getPreDiscountCharge(), rentalAgreement.getDiscountAmount()));
 
-        // return rental agreement
         return rentalAgreement;
     }
 
+    /**
+     * Builds a rental tool object given a tool code
+     * @param toolCode - unique identifier for a tool
+     * @return         - initialized tool
+     */
     private Tool buildRentedTool(String toolCode) {
         Tool tool = null;
         if ("LADW".equals(toolCode)) {

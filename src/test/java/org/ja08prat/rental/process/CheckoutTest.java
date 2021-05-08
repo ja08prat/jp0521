@@ -10,6 +10,9 @@ import java.time.Month;
 
 import static org.junit.Assert.*;
 
+/**
+ * This class tests the Checkout class
+ */
 public class CheckoutTest {
 
     private static Checkout checkout;

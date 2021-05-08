@@ -3,6 +3,9 @@ package org.ja08prat.rental.model;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * This class is a data model that represents a Rental Agreement
+ */
 public class RentalAgreement {
     // initialized values
     private Tool rentedTool;

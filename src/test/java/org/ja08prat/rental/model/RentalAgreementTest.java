@@ -7,6 +7,9 @@ import java.time.Month;
 
 import static org.junit.Assert.*;
 
+/**
+ * This classes tests the RentalAgreement class
+ */
 public class RentalAgreementTest {
 
     /**
